@@ -2,6 +2,10 @@
 
 library(shinydashboard)
 
+
+module_names = c('Cigarette smoking', 'Culture & Identity', 'Education & Training', 'Families & Household', 'Housing', 'Income',
+                 'Population', 'Transport & Communications', 'Work & unpaid activities')
+
 dashboardPage(skin = "black",
               dashboardHeader(title = "dotStat"),
               dashboardSidebar(sidebarMenu(
@@ -12,8 +16,10 @@ dashboardPage(skin = "black",
               dashboardBody(tabItems(
                 tabItem(tabName = "folders",
                         fluidRow(
-                          box(title = "Select destination folder", status = "warning"),
-                          box(title = "Specify table code", status = "warning")
+                          box(title = "Select destination folder", status = "warning",
+                              selectInput(inputId = 'Module',label = '', choices = module_names)),
+                          box(title = "Specify table code", status = "warning",
+                              textInput(inputId = 'ModuleCode', label = '', placeholder = '0000'))
                         ),
                         fluidRow(tabBox(
                           title = "Set up background folders",
